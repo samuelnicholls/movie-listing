@@ -1,0 +1,24 @@
+{
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "at-rule-no-unknown": [ true, {
+      "ignoreAtRules": [
+        "extends", "extend", "include", "mixin", "at-root", "function", "return", "each", "if", "else", "warn", "for", "fr",
+      ]
+    }],
+    "max-nesting-depth": [ 3, {
+      ignore: ["pseudo-classes", "blockless-at-rules"]
+    }],
+    "block-closing-brace-empty-line-before": "never",
+    "block-no-empty": null,
+    "declaration-block-no-duplicate-properties": [ true, {
+      "ignore": ["consecutive-duplicates"]
+    }],
+    "indentation": 2,
+    "no-descending-specificity": null,
+    "rule-empty-line-before": [ "always", {
+      "except": ["after-single-line-comment", "first-nested"]
+    }],
+    "unit-whitelist": ["em", "rem", "s", "%", "px", "vw", "vh", "ms", "deg", "fr"]
+  }
+}

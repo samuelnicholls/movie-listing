@@ -1,0 +1,15 @@
+$this: 'l-grid' !global;
+
+.#{$this} {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
+  grid-gap: 40px;
+  padding: 10px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include breakpoint('>=', 'ms') {
+    padding: 20px;
+  }
+}

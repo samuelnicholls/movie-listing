@@ -1,0 +1,125 @@
+/// Map of device widths used for media queries in this project
+///
+/// @author Samuel Nicholls
+/// @since 1.0.0
+///
+/// @access private
+/// @group breakpoints
+/// @see breakpoint()
+///
+/// @type Map
+/// @prop {string} device.key - key to return value
+/// @prop {int} device.value - pixel width of device
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+$breakpoint-map: (
+  'ms': 480,
+  // mobile small (portrait)
+    'ml': 600,
+  // mobile large (landscape)
+    'ts': 720,
+  // tablet small (portrait)
+    'tl': 960,
+  // tablet large (landscape)
+    'ls': 1024,
+  // laptop small
+    'll': 1200,
+  // laptop large
+    'lxl': 1366,
+  // laptop extra large
+    'ds': 1400,
+  // desktop small
+    'dm': 1500,
+  // deskptop medium
+    'dl': 1800,
+  // desktop large
+    'dxl': 1920,
+  // desktop extra large
+) !default;
+
+/// Unit of measurement for media queries
+///
+/// @author Samuel Nicholls
+/// @since 1.0.0
+///
+/// @access private
+/// @group breakpoints
+/// @see breakpoint()
+///
+/// @type String
+$breakpoint-unit: 'px';
+
+/// Mixin to standardise media queries declaration
+///
+/// @author Samuel Nicholls
+/// @since 1.0.0
+///
+/// @access public
+/// @group breakpoints
+///
+/// @param {String} $operation - Apply a combination of min and max width
+/// @param {String} $breakpoint-key - Specify viewport size to target
+/// @param {String} $media-type - Specify device type, or just do it for all
+///
+/// @example scss - Usage
+///
+/// .foo {
+///   padding: 20px;
+///
+///   @include breakpoint('>=', 'ms') {
+///     padding: 30px;
+///   }
+/// }
+///
+/// @example css - CSS output
+///
+/// .foo {
+///   padding: 20px;
+/// }
+///
+/// @media all and (min-width: 480px) {
+///   .foo {
+///     padding: 30px;
+///   }
+/// }
+@mixin breakpoint($operation, $breakpoint-key, $media-type: 'all') {
+  @if (map-has-key($breakpoint-map, $breakpoint-key)) {
+    $query: map-deep-get($breakpoint-map, $breakpoint-key);
+    $query-value: $query + $breakpoint-unit;
+
+    // Basic queries for mobile or desktop first approaches
+
+    @if $operation == '<=' {
+      @media #{$media-type} and (max-width: $query-value) {
+        @content;
+      }
+    }
+
+    @if $operation == '>=' {
+      @media #{$media-type} and (min-width: $query-value) {
+        @content;
+      }
+    }
+
+    // Operations without having to be equal.
+
+    @if $operation == '<' {
+      @media #{$media-type} and (max-width: ($query - 1) + $breakpoint-unit) {
+        @content;
+      }
+    }
+
+    @if $operation == '>' {
+      @media #{$media-type} and (min-width: ($query + 1) + $breakpoint-unit) {
+        @content;
+      }
+    }
+  }
+}

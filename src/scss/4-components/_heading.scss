@@ -1,0 +1,22 @@
+$this: 'c-heading' !global;
+
+.#{$this} {
+  padding: 10px;
+  background-color: $black;
+  text-align: center;
+
+  @include breakpoint('>=', 'ms') {
+    padding: 40px;
+  }
+
+  &__text {
+    font-family: $font-regular;
+    font-size: 30px; 
+    color: $white;
+    margin: 0;
+
+    @include breakpoint('>=', 'ms') {
+      font-size: 40px;
+    }
+  }
+}
