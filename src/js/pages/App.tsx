@@ -5,22 +5,14 @@ import Card from '../components/Card'
 import Button from '../components/Button'
 import Search from '../components/Search'
 
-function App() {
+const App = (): JSX.Element => {
   const [movies] = useState(data.MovieList)
   const [visible, setVisible] = useState(5)
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleChange = (event: any) => {
-    setSearchTerm(event.target.value)
-  }
-
   const results = movies.filter((movie) =>
     movie.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()),
   )
-
-  const loadMore = () => {
-    setVisible((prevState) => prevState + 5)
-  }
 
   return (
     <div>
@@ -32,11 +24,10 @@ function App() {
           <Search
             placeholder='Search Movies...'
             value={searchTerm}
-            onChange={handleChange}
+            setSearchTerm={setSearchTerm}
           />
         </div>
       </div>
-      {results.length < 1 && <h1>Empty State</h1>}
       <ul className='l-grid'>
         {results.slice(0, visible).map((result) => (
           <Card
@@ -50,7 +41,7 @@ function App() {
       </ul>
       <div className='o-row'>
         {visible < results.length && (
-          <Button title='Load More' onClick={loadMore} />
+          <Button title='Load More' setVisible={setVisible} />
         )}
       </div>
     </div>

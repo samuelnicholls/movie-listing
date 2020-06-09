@@ -2,12 +2,16 @@ import React from 'react'
 
 type ButtonProps = {
   title: string
-  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+  setVisible: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Button = ({ title, onClick }: ButtonProps) => {
+const Button = ({ title, setVisible }: ButtonProps) => {
+  const loadMore = () => {
+    setVisible((prevState: number) => prevState + 5)
+  }
+
   return (
-    <button className='c-button' onClick={onClick} type='button'>
+    <button className='c-button' onClick={loadMore} type='button'>
       {title}
     </button>
   )

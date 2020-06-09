@@ -1,19 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import App from "./pages/App";
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import App from './pages/App'
 
-function Router() {
+const Router = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route
-          exact
-          path='/movie-search'
-          component={App}
-        />
+        <Route exact path='/movie-listing' component={App} />
       </Switch>
     </BrowserRouter>
   )
-};
+}
 
-export default Router;
+export default Router

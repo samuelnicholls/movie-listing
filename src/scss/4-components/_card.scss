@@ -25,23 +25,25 @@ $this: 'c-card' !global;
   }
 
   &__circle {
+    background-color: $black;
+    border-radius: 50%;
     position: absolute;
     top: -10px;
     right: -10px;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    background-color: $black;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 25px;
+    width: 25px;
     padding: 5px;
   }
 
   &__rating {
-    font-size: 16px;
-    font-family: $font-regular;
     color: $white;
+    font: {
+      size: 16px;
+      family: $font-regular;
+    }
   }
 
   &__image {
