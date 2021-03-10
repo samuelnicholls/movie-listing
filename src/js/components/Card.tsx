@@ -1,24 +1,25 @@
 import React from 'react'
 
-type CardProps = {
-  id: number
+export interface CardProps {
   name: string
+  rating: number
   image: string
-  rating: string
-  genre: string
 }
 
-const Card = ({ id, name, image, rating, genre }: CardProps) => {
+const Card = ({ name, rating, image }: CardProps) => {
   return (
-    <li key={id} className='c-card'>
+    <li className='c-card'>
       <div className='c-card__wrapper'>
-        <img alt={name} src={image} className='c-card__image' />
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${image}`}
+          alt={name}
+          className='c-card__image'
+        />
         <div className='c-card__circle'>
           <span className='c-card__rating'>{rating}</span>
         </div>
       </div>
       <p className='c-card__title'>{name}</p>
-      <p className='c-card__genre'>{genre}</p>
     </li>
   )
 }

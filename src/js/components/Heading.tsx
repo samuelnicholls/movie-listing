@@ -1,6 +1,6 @@
 import React from 'react'
 
-type HeadingProps = {
+export interface HeadingProps {
   title: string
 }
 

@@ -1,17 +1,13 @@
 import React from 'react'
 
-type ButtonProps = {
+export interface ButtonProps {
   title: string
-  setVisible: React.Dispatch<React.SetStateAction<number>>
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button = ({ title, setVisible }: ButtonProps) => {
-  const loadMore = () => {
-    setVisible((prevState: number) => prevState + 5)
-  }
-
+const Button = ({ title, onClick}: ButtonProps) => {
   return (
-    <button className='c-button' onClick={loadMore} type='button'>
+    <button className='c-button' onClick={onClick}>
       {title}
     </button>
   )

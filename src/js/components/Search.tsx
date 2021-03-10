@@ -1,24 +1,28 @@
 import React from 'react'
 
-type HeadingProps = {
+export interface SearchProps {
   placeholder: string
   value: string
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+  setSearchTerm: (search: string) => void
 }
 
-const Search = ({ placeholder, value, setSearchTerm }: HeadingProps) => {
-  const handleChange = (event: any) => {
+const Search = ({ placeholder, value, setSearchTerm }: SearchProps) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   }
 
   return (
-    <input
-      type='text'
-      placeholder={placeholder}
-      className='c-input'
-      value={value}
-      onChange={handleChange}
-    />
+    <div className='search'>
+      <label htmlFor='search'>Search Movie</label>
+      <input
+        id='search'
+        type='text'
+        placeholder={placeholder}
+        className='c-input'
+        value={value}
+        onChange={handleChange}
+      />
+    </div>
   )
 }
 

@@ -14,3 +14,8 @@
 @import '4-components/card';
 @import '4-components/heading';
 @import '4-components/input';
+
+.no-result {
+  display: flex;
+  justify-content: center;
+}
