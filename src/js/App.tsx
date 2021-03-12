@@ -12,6 +12,7 @@ export default function App() {
       box-sizing: border-box;
     }
   `
+  
   return (
     <HashRouter basename='/'>
       <Switch>
