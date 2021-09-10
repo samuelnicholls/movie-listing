@@ -5,11 +5,6 @@ import Button from '../components/Button'
 import Search from '../components/Search'
 import NoResults from '../components/NoResults'
 
-// TODO:
-// - Refactor everything and use style components
-// - Update README
-// - Update project tags
-
 export interface Movie {
   id: number
   original_title: string
