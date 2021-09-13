@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Heading from '../components/Heading'
+import Heading from '../components/Heading/index'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import Search from '../components/Search'
@@ -12,7 +12,7 @@ export interface Movie {
   poster_path: string
 }
 
-export default function Home() {
+export default function Listing() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [page, setPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState('')

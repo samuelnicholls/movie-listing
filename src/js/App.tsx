@@ -1,11 +1,10 @@
 import React from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'styled-normalize'
-import Home from './pages/Home'
+import Listing from './components/Listing'
 
 export default function App() {
-  const GlobalStyle = createGlobalStyle`
+  const GlobalStyles = createGlobalStyle`
     ${normalize}
     * {
       font-family: 'Poppins', sans-serif;
@@ -13,15 +12,13 @@ export default function App() {
     }
   `
   return (
-    <HashRouter basename='/'>
-      <Switch>
-        <Route exact path='/' component={Home} />
-      </Switch>
-      <GlobalStyle />
+    <>
+      <GlobalStyles />
+      <Listing/>
       <link
         href='https://fonts.googleapis.com/css?family=Poppins&display=swap'
         rel='stylesheet'
       />
-    </HashRouter>
+    </>
   )
 }
