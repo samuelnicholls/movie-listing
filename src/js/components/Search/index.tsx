@@ -1,20 +1,20 @@
 import React from 'react'
+import * as Styles from './styles'
 
-export interface SearchProps {
+type SearchProps = {
   placeholder: string
   value: string
   setSearchTerm: (search: string) => void
 }
 
-const Search = ({ placeholder, value, setSearchTerm }: SearchProps) => {
+export default function Search({ placeholder, value, setSearchTerm }: SearchProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   }
 
   return (
-    <div className='search'>
-      <label htmlFor='search'>Search Movie</label>
-      <input
+    <Styles.Search>
+      <Styles.searchInput
         id='search'
         type='text'
         placeholder={placeholder}
@@ -22,8 +22,6 @@ const Search = ({ placeholder, value, setSearchTerm }: SearchProps) => {
         value={value}
         onChange={handleChange}
       />
-    </div>
+    </Styles.Search>
   )
 }
-
-export default Search

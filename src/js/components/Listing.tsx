@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Heading from '../components/Heading/index'
 import Card from '../components/Card'
 import Button from '../components/Button'
-import Search from '../components/Search'
+import Search from '../components/Search/index'
 import NoResults from '../components/NoResults'
 
 export interface Movie {
@@ -47,9 +47,9 @@ export default function Listing() {
 
   return (
     <>
-      <div className='o-wrapper'>
+      <>
         <Heading title='Movie Listing' />
-      </div>
+      </>
       <div className='o-main'>
         <div className='o-row'>
           <Search
