@@ -1,10 +1,6 @@
 # Movie Listing
 
 ### TODO
-- Add API key to env file
-- Only output year when showing release date
-- Add in pagination (Load More button)
-- Add in search
 - Error Handling on for fetch api
 - Add accessibility linting
 - Check if all Tailwind classes are needed

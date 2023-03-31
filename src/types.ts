@@ -1,5 +1,11 @@
 export type Movie = {
-  poster_path: string,
-  title: string,
-  release_date: string
-}
+  poster_path: string;
+  title: string;
+  release_date: string;
+};
+
+export type MoviesResponse = {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+};

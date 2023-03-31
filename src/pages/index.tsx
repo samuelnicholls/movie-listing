@@ -4,42 +4,44 @@ import Header from '@/components/Header';
 import SearchBox from '@/components/SearchBox';
 import Title from '@/components/Title';
 import { Movie } from '@/types';
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import getMovies from './api/getMovies';
+import { useState } from 'react';
+import { useInfiniteQuery } from 'react-query';
+import fetchAllMovies from './api/fetchAllMovies';
+import fetchSearchedMovies from './api/fetchSearchedMovies';
+import useDebounce from '@/hooks/useDebounce';
+import type { NextPage } from 'next';
+import Button from '@/components/Button';
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<Movie[]>([
-    {
-      poster_path: "https://image.tmdb.org/t/p/w500//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-      title: "The Dark Knight",
-      release_date: "2008-07-14"
-    },
-    {
-      poster_path: "https://image.tmdb.org/t/p/w500//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-      title: "The Dark Knight",
-      release_date: "2008-07-14"
-    },
-    {
-      poster_path: "https://image.tmdb.org/t/p/w500//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-      title: "The Dark Knight",
-      release_date: "2008-07-14"
-    },
-    {
-      poster_path: "https://image.tmdb.org/t/p/w500//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-      title: "The Dark Knight",
-      release_date: "2008-07-14"
-    }
-  ]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  // useEffect(() => {
-  //   getMovies()
-  //     .then((data) => {
-  //       setData(data.results);
-  //     })
-  //     .catch((error) => console.log('getMovies.error', error));
-  // }, []);
+  const fetchMovies = ({ pageParam = 1 }) => {
+    if (!searchTerm) {
+      return fetchAllMovies(pageParam);
+    } else {
+      return fetchSearchedMovies(pageParam, searchTerm);
+    }
+  };
+
+  const {
+    isLoading,
+    isError,
+    data,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery(
+    ['allMovies', useDebounce<string>(searchTerm, 500)],
+    fetchMovies,
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.page !== lastPage.total_pages) {
+          return lastPage.page + 1;
+        }
+      },
+    },
+  );
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -52,15 +54,36 @@ const Home: NextPage = () => {
         <div className="container mx-auto">
           <Title text="Movie Listing" />
           <div className="container md:my-12 mx-auto px-4 md:px-12">
-            <SearchBox />
+            <SearchBox setSearchTerm={setSearchTerm} />
+            {isLoading && <p>Is Loading</p>}
+            {isError && <p>Is Error</p>}
             <div className="flex flex-wrap -mx-1 lg:-mx-4">
-              {data.map((movie, index) => (
-                <div key={index} className="my-3 px-3 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
-                  <Card posterPath={movie.poster_path} title={movie.title} releaseDate={movie.release_date} />
-                </div>
-              ))}
+              {data &&
+                data.pages.map((page) =>
+                  page.results.map((movie: Movie, index: number) => (
+                    <div
+                      key={index}
+                      className="my-3 px-3 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4"
+                    >
+                      <Card
+                        posterPath={movie.poster_path}
+                        title={movie.title}
+                        releaseDate={movie.release_date}
+                      />
+                    </div>
+                  )),
+                )}
             </div>
           </div>
+          {hasNextPage && (
+            <Button
+              onClick={() => {
+                fetchNextPage();
+              }}
+              disabled={isFetchingNextPage}
+              text="Load More"
+            />
+          )}
         </div>
       </main>
       <Footer />

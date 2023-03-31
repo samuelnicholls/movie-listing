@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 export type TitleProps = {
-  text: string
+  text: string;
 };
 
-const Title: FC<TitleProps> = ({text}) => {
+const Title: FC<TitleProps> = ({ text }) => {
   return (
     <h1 className="mb-8 text-4xl font-bold md:text-5xl lg:text-6xl text-white">
       {text}
@@ -12,4 +12,4 @@ const Title: FC<TitleProps> = ({text}) => {
   );
 };
 
-export default Title
+export default Title;
