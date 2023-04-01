@@ -20,13 +20,14 @@ const Card: FC<CardProps> = ({ id, posterPath, title, releaseDate }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Link href={`/movie/${id}`}>
+      <Link href={`/movie/${id}`} className='flex flex-col'>
         <Image
           src={`https://image.tmdb.org/t/p/w500/${posterPath}`}
           alt={title}
           className="rounded-3xl shadow-lg"
           width="350"
           height="450"
+          priority
         />
         <div className="mt-6 md:w-full md:text-left">
           <p className=" text-white text-2xl">{title}</p>

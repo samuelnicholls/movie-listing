@@ -53,12 +53,12 @@ const Home: NextPage = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <div className="flex flex-wrap -mx-1 lg:-mx-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {data?.pages.map((page) =>
               page.results.map((movie: Movie, index: number) => (
                 <div
-                  key={index}
-                  className="my-3 px-3 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4"
+                  key={index} 
+                  className="flex justify-center my-3 px-3 lg:my-4 lg:px-4"
                 >
                   <Card
                     id={movie.id}

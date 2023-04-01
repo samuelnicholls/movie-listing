@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Title from '@/components/Title';
 import Button from '@/components/Button';
 import { USDollarFormatter } from '@/utils';
+import { FC } from 'react';
 
 const Movie: NextPage = () => {
   const router = useRouter();
@@ -16,6 +17,15 @@ const Movie: NextPage = () => {
     ["singleMovie", id],
     () => fetchSingleMovie(id?.toString())
   );
+
+  const RenderListItem: FC<{title: string; value: string}> = ({title, value}) => {
+    return (
+      <li className='mb-1'>
+        <span className="font-bold">{title} </span> 
+        {value}
+      </li>
+    )
+  }
 
   console.log("data", data)
   return (
@@ -41,12 +51,12 @@ const Movie: NextPage = () => {
               <p>{data.overview}</p>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <ul>
-                <li>Genres: {data.genres.map((genre: any, i: number) => (<span key={i} className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1.5 rounded dark:bg-blue-900 dark:text-blue-300">{genre.name}</span>))}</li>
-                <li>Rating: {Math.floor(data.vote_average)} / 10</li>
-                <li>Release Date: {data.release_date}</li>
-                <li>Runtime: {data.runtime} mins</li>
-                <li>Budget: {(USDollarFormatter.format(data.budget))}</li>
-                <li>Revenue: {(USDollarFormatter.format(data.revenue))}</li>
+                <li className='mb-5'>{data.genres.map((genre: any, i: number) => (<span key={i} className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1.5 rounded dark:bg-blue-900 dark:text-blue-300">{genre.name}</span>))}</li>
+                <RenderListItem title="Rating: " value={`${Math.floor(data.vote_average)} / 10`} />
+                <li className='mb-1'><span className="font-bold">Release Date: </span>{data.release_date}</li>
+                <li className='mb-1'><span className="font-bold">Runtime: </span> {data.runtime} mins</li>
+                <li className='mb-1'><span className="font-bold">Budget: </span>{(USDollarFormatter.format(data.budget))}</li>
+                <li className='mb-1'><span className="font-bold">Revenue: </span> {(USDollarFormatter.format(data.revenue))}</li>
               </ul>
             </div>
           </div>
