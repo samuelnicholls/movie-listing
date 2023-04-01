@@ -3,7 +3,7 @@ import { FC } from 'react';
 export type ButtonProps = {
   text: string;
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 const Button: FC<ButtonProps> = ({ text, onClick, disabled }) => {
