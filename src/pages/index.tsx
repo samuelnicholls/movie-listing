@@ -11,6 +11,7 @@ import type { NextPage } from 'next';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Error from '@/components/Error';
+import Warning from '@/components/Warning';
 
 const Home: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -42,6 +43,8 @@ const Home: NextPage = () => {
     },
   );
 
+  const isEmpty = data?.pages[0].results.length === 0;
+
   return (
     <div className="container mx-auto">
       <Title text="Movie Listing" />
@@ -50,6 +53,9 @@ const Home: NextPage = () => {
         {isError && (
           <Error text="Error loading movies, please refresh and try again." />
         )}
+        {!isError && isEmpty && (
+          <Warning text="No results, please try searching for another movie." />
+        )}
         {isLoading ? (
           <Loader />
         ) : (
@@ -57,7 +63,7 @@ const Home: NextPage = () => {
             {data?.pages.map((page) =>
               page.results.map((movie: Movie, index: number) => (
                 <div
-                  key={index} 
+                  key={index}
                   className="flex justify-center my-3 px-3 lg:my-4 lg:px-4"
                 >
                   <Card
@@ -67,12 +73,12 @@ const Home: NextPage = () => {
                     releaseDate={movie.release_date}
                   />
                 </div>
-              ))
+              )),
             )}
           </div>
         )}
       </div>
-      {(hasNextPage && !isError) && (
+      {hasNextPage && !isError && (
         <Button
           onClick={() => {
             fetchNextPage();

@@ -1,8 +1,9 @@
-// TODO: Replace any with type
+import { SingleMovieResponse } from '@/types';
+
 export default async function fetchSingleMovie(
   id: string | undefined,
-): Promise<any> {
-  if (!id) return
+): Promise<SingleMovieResponse | undefined> {
+  if (!id) return;
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-EN`,
   ).then((response) => {
