@@ -1,15 +1,18 @@
-/* eslint-disable no-console */
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import fetchSingleMovie from '../api/fetchSingleMovie';
-import { useQuery } from 'react-query';
-import Image from 'next/image';
-import Title from '@/components/Title';
-import Button from '@/components/Button';
-import { USDollarFormatter } from '@/utils';
 import { FC } from 'react';
-import Loader from '@/components/Loader';
+import { useQuery } from 'react-query';
+
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import Button from '@/components/Button';
 import Error from '@/components/Error';
+import Loader from '@/components/Loader';
+import Title from '@/components/Title';
+
+import fetchSingleMovie from '../api/fetchSingleMovie';
+
+import { USDollarFormatter } from '@/utils';
 
 const Movie: NextPage = () => {
   const router = useRouter();
@@ -31,7 +34,6 @@ const Movie: NextPage = () => {
     );
   };
 
-  console.log('data', data);
   return (
     <div className="container mx-auto">
       <div className="flex mb-5">
@@ -55,7 +57,7 @@ const Movie: NextPage = () => {
                 priority
               />
             </div>
-            <div className="text-xl text-left text-white leading-7	">
+            <div className="text-xl text-left text-white leading-7">
               <p>{data.overview}</p>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <ul>
