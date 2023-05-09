@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
-
 import type { NextPage } from 'next';
-
 import Button from '@/components/Button';
 import Card from '@/components/Card';
 import Error from '@/components/Error';
@@ -10,12 +8,9 @@ import Loader from '@/components/Loader';
 import SearchBox from '@/components/SearchBox';
 import Title from '@/components/Title';
 import Warning from '@/components/Warning';
-
 import fetchAllMovies from './api/fetchAllMovies';
 import fetchSearchedMovies from './api/fetchSearchedMovies';
-
 import useDebounce from '@/hooks/useDebounce';
-
 import { Movie } from '@/types';
 
 const Home: NextPage = () => {

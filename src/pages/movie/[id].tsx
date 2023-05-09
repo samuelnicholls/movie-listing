@@ -1,17 +1,13 @@
 import { FC } from 'react';
 import { useQuery } from 'react-query';
-
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
 import Button from '@/components/Button';
 import Error from '@/components/Error';
 import Loader from '@/components/Loader';
 import Title from '@/components/Title';
-
 import fetchSingleMovie from '../api/fetchSingleMovie';
-
 import { USDollarFormatter } from '@/utils';
 
 const Movie: NextPage = () => {
@@ -59,13 +55,13 @@ const Movie: NextPage = () => {
             </div>
             <div className="text-xl text-left text-white leading-7">
               <p>{data.overview}</p>
-              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+              <hr className="h-px my-8 border-0 bg-gray-700"></hr>
               <ul>
                 <li className="mb-5">
                   {data.genres.map((genre, i) => (
                     <span
                       key={i}
-                      className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1.5 rounded dark:bg-blue-900 dark:text-blue-300"
+                      className="text-xs font-medium mr-2 px-2.5 py-1.5 rounded bg-blue-900 text-blue-300"
                     >
                       {genre.name}
                     </span>

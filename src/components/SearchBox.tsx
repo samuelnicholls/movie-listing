@@ -9,7 +9,7 @@ const SearchBox: FC<SearchBoxProps> = ({ setSearchTerm }) => {
     <div className="my-8 lg:my-20">
       <label
         htmlFor="search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        className="mb-2 text-sm font-medium sr-only text-white"
       >
         Search
       </label>
@@ -17,7 +17,7 @@ const SearchBox: FC<SearchBoxProps> = ({ setSearchTerm }) => {
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
+            className="w-5 h-5 text-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -34,7 +34,7 @@ const SearchBox: FC<SearchBoxProps> = ({ setSearchTerm }) => {
         <input
           type="search"
           id="search"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-4 pl-10 text-sm border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           placeholder="Search"
           required
           onChange={(event) => setSearchTerm(event.target.value)}
