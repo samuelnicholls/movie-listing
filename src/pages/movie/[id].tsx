@@ -35,7 +35,7 @@ const Movie: NextPage = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4 md:px-12">
       <div className="flex mb-5">
         <Button onClick={() => router.back()} text="Go Back" />
       </div>
@@ -46,7 +46,7 @@ const Movie: NextPage = () => {
       {data && (
         <>
           <Title text={data.title} />
-          <div className="grid md:grid-cols-2 gap-4 mt-20">
+          <div className="grid md:grid-cols-2 gap-4 mt-8 lg:mt-20">
             <div className="flex justify-center">
               <Image
                 src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
