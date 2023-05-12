@@ -48,4 +48,3 @@ npm run dev
 
 ### TODO
 - Full mobile, tablet and desktop run through
-- Update README and other docs in GitHub
