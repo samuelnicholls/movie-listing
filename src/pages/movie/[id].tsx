@@ -57,11 +57,11 @@ const Movie: NextPage = () => {
               <p>{data.overview}</p>
               <hr className="h-px my-8 border-0 bg-gray-700"></hr>
               <ul>
-                <li className="mb-5">
+                <li className="mb-2 flex flex-wrap">
                   {data.genres.map((genre, i) => (
                     <span
                       key={i}
-                      className="text-xs font-medium mr-2 px-2.5 py-1.5 rounded bg-blue-900 text-blue-300"
+                      className="text-xs font-medium mr-2 mb-2 px-2.5 py-1.5 rounded bg-blue-900 text-blue-300"
                     >
                       {genre.name}
                     </span>

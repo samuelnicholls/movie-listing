@@ -45,6 +45,3 @@ npm run dev
 
 ## Future Improvements
 - [ ] Add in skeleton component for when an image isn't returned from the API.
-
-### TODO
-- Full mobile, tablet and desktop run through
