@@ -45,3 +45,5 @@ npm run dev
 
 ## Future Improvements
 - [ ] Add in skeleton component for when an image isn't returned from the API.
+- [ ] Make sure all image posters are the same size on the listing screen.
+- [ ] Change layout for the details screen as the poster is small at the moment.
